@@ -48,11 +48,11 @@ def calculate_class_probabilities(summaries, X):
     for label, summary in summaries.items():
         total_data_count += summary[2]
 
-    for _, _ in summaries.items():  # loop through each item
-        for label, summary in summaries.items():  # calculate the probability of each column in 'input' being of label 'lbl'
+    for _, _ in summaries.items():
+        for label, summary in summaries.items():
             _, _, num_labeled = summary
             if label not in class_probabilities:
-                class_probabilities[label] = math.log(num_labeled / total_data_count, 10)  # log probabilities. Maybe?
+                class_probabilities[label] = math.log(num_labeled / total_data_count, 10)
             means, stds, _ = summary
             class_probabilities[label] *= np.log10(np.prod(gaussian_prob_density_func(X, means, stds), axis=0))
 
